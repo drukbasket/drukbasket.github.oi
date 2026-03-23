@@ -19,7 +19,7 @@ function syncLoginStatus() {
             if(confirm("Are you sure you want to log out?")) {
                 localStorage.removeItem('isLoggedIn');
                 localStorage.removeItem('currentUser'); // If you store usernames
-                window.location.href = '/index.html'; // Redirect to home on logout
+                window.location.href = '/drukbasket/index.html'; // Redirect to home on logout
             }
         };
     } else {
@@ -28,7 +28,7 @@ function syncLoginStatus() {
         loginBtn.style.background = "#efe2e2";
         
         loginBtn.onclick = function() {
-            window.location.href = '/login.html';
+            window.location.href = '/drukbasket/login.html';
         };
     }
 }
@@ -40,6 +40,6 @@ function checkLoginRedirect() {
         localStorage.removeItem('redirectAfterLogin');
         window.location.href = redirectTo;
     } else {
-        window.location.href = '/index.html';
+        window.location.href = '/drukbasket/index.html';
     }
 }
