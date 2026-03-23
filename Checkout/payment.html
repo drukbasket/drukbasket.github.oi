@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment | DrukBasket</title>
-    <script src="/auth.js"></script>
-    <link rel="stylesheet" href="/style.css">
+    <script src="/drukbasket/auth.js"></script>
+    <link rel="stylesheet" href="/drukbasket/style.css">
     <style>
         /* Reuse your existing styles */
         .live-logo-container { display: inline-flex; align-items: center; gap: 4px; }
@@ -49,22 +49,22 @@
 <body>
     <header class="navbar">
         <div class="logo-container">
-            <a href="/index.html"><img src="/Images/logo.png" alt="Drukbasket Logo" class="main-logo"></a>
+            <a href="/drukbasket/index.html"><img src="/drukbasket/Images/logo.png" alt="Drukbasket Logo" class="main-logo"></a>
         </div>
         <nav>
-            <a href="/index.html">Marketplace</a>
-            <a href="/aboutUs.html">About Us</a>
-            <a href="/contactUs.html">Contact Us</a>
+            <a href="/drukbasket/index.html">Marketplace</a>
+            <a href="/drukbasket/aboutUs.html">About Us</a>
+            <a href="/drukbasket/contactUs.html">Contact Us</a>
         </nav>
 
         <div class="user-actions">
-            <a href="/market-prices.html" style="text-decoration: none;">
+            <a href="/drukbasket/market-prices.html" style="text-decoration: none;">
                 <div class="live-logo-container">
                     <span class="market-price">View Current Market Prices</span>
                     <div class="recording-circle"><div class="inner-dot"></div><div class="outer-ring"></div></div>
             </div>
             </a>
-            <a href="Dzongkha/index.html" style="text-decoration: none;">EN</a>
+            <a href="/drukbasket/Dzongkha/index.html" style="text-decoration: none;">EN</a>
             
             <div class="cart-container" style="position: relative; display: inline-block; cursor: pointer;">
                 <span class="cart" style="font-size: 1.5rem;">🛒</span>
@@ -72,7 +72,7 @@
             </div>
 
             <span class="notification">🔔</span>
-            <a href="/login.html" class="login-btn-link">
+            <a href="/drukbasket/login.html" class="login-btn-link">
                 <button class="login-btn">LOG IN</button>
             </a>
         </div>
@@ -88,7 +88,7 @@
         <h2>M-BoB / mPAY Payment</h2>
         <p style="color: #666;">Scan the QR code below using your banking app</p>
         
-        <img src="/Images/paymentQRcode.png" alt="Payment QR" class="qr-code" id="qr-image" onclick="simulateScan()">
+        <img src="/drukbasket/Images/paymentQRcode.png" alt="Payment QR" class="qr-code" id="qr-image" onclick="simulateScan()">
         
         <p style="margin-bottom: 0; color: #888; font-size: 0.9rem;">Total Payable</p>
         <div class="amount-highlight" id="display-total">Nu. 0</div>
@@ -97,7 +97,7 @@
             <p>🔒 256-bit SSL Encrypted Transaction</p>
         </div>
         
-        <p style="margin-top: 15px;"><a href="/Checkout/checkout.html" style="color: #3498db; text-decoration: none; font-size: 0.9rem;">← Back to Order Summary</a></p>
+        <p style="margin-top: 15px;"><a href="/drukbasket/Checkout/checkout.html" style="color: #3498db; text-decoration: none; font-size: 0.9rem;">← Back to Order Summary</a></p>
     </div>
 
     <script>
@@ -172,7 +172,7 @@
             localStorage.removeItem('tempTotalPayable');
 
             // Move to Analytics Dashboard
-            window.location.href = "/index.html"; 
+            window.location.href = "/drukbasket/index.html"; 
         }
     </script>
 </body>
