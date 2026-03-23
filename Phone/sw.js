@@ -1,10 +1,10 @@
 const CACHE_NAME = "drukbasket-v1";
 const ASSETS = [
   "/",
-  "/Phone/index.html",
-  "/Phone/manifest.json",
-  "/icons/icon-192.png",
-  "/icons/icon-512.png"
+  "/drukbasket/Phone/index.html",
+  "/drukbasket/Phone/manifest.json",
+  "/drukbasket/icons/icon-192.png",
+  "/drukbasket/icons/icon-512.png"
 ];
 
 self.addEventListener("install", (e) => {
