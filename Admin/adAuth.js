@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const isLoginPage = window.location.pathname.includes('login.html');
     const isLoggedIn = localStorage.getItem('isAdminLoggedIn') === 'true';
 
-    if (!isLoggedIn && !isLoginPage && window.location.pathname.includes('/Admin/')) {
-        window.location.href = '/Admin/login.html';
+    if (!isLoggedIn && !isLoginPage && window.location.pathname.includes('/drukbasket/Admin/')) {
+        window.location.href = '/drukbasket/Admin/login.html';
         return;
     }
 
@@ -25,11 +25,11 @@ function syncLoginStatus() {
             e.preventDefault();
             if(confirm("Are you sure you want to log out of Admin Panel?")) {
                 localStorage.removeItem('isAdminLoggedIn');
-                window.location.href = '/Admin/login.html';
+                window.location.href = '/drukbasket/Admin/login.html';
             }
         };
     } else {
         loginBtn.innerText = "LOG IN";
-        loginBtn.onclick = () => window.location.href = '/Admin/login.html';
+        loginBtn.onclick = () => window.location.href = '/drukbasket/Admin/login.html';
     }
 }
