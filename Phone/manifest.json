@@ -1,7 +1,7 @@
 {
   "name": "Druk Basket",
   "short_name": "DrukBasket",
-  "start_url": "/Phone/index.html",
+  "start_url": "/drukbasket/Phone/index.html",
   "display": "standalone",
   "background_color": "#f6f7f9",
   "theme_color": "#0a7a3b",
