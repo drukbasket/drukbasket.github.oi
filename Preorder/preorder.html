@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart (Pre Order) | DrukBasket</title>
-    <script src="/auth.js"></script>
-    <link rel="stylesheet" href="/style.css">
+    <script src="/drukbasket/auth.js"></script>
+    <link rel="stylesheet" href="/drukbasket/style.css">
     <style>
         .preorder-container { max-width: 1200px; margin: 20px auto; padding: 0 5%; }
         .promo-banner {
@@ -63,22 +63,22 @@
 <body>
     <header class="navbar">
         <div class="logo-container">
-            <a href="/index.html"><img src="/Images/logo.png" alt="Drukbasket Logo" class="main-logo"></a>
+            <a href="/drukbasket/index.html"><img src="/drukbasket/Images/logo.png" alt="Drukbasket Logo" class="main-logo"></a>
         </div>
         <nav>
-            <a href="/index.html">Marketplace</a>
-            <a href="/aboutUs.html">About Us</a>
-            <a href="/contactUs.html">Contact Us</a>
+            <a href="/drukbasket/index.html">Marketplace</a>
+            <a href="/drukbasket/aboutUs.html">About Us</a>
+            <a href="/drukbasket/contactUs.html">Contact Us</a>
         </nav>
 
         <div class="user-actions">
-            <a href="/market-prices.html" style="text-decoration: none;">
+            <a href="/drukbasket/market-prices.html" style="text-decoration: none;">
                 <div class="live-logo-container">
                     <span class="market-price">View Current Market Prices</span>
                     <div class="recording-circle"><div class="inner-dot"></div><div class="outer-ring"></div></div>
             </div>
             </a>
-            <a href="Dzongkha/index.html" style="text-decoration: none;">EN</a>
+            <a href="/drukbasket/Dzongkha/index.html" style="text-decoration: none;">EN</a>
             
             <div class="cart-container" style="position: relative; display: inline-block; cursor: pointer;">
                 <span class="cart" style="font-size: 1.5rem;">🛒</span>
@@ -86,7 +86,7 @@
             </div>
 
             <span class="notification">🔔</span>
-            <a href="/login.html" class="login-btn-link">
+            <a href="/drukbasket/login.html" class="login-btn-link">
                 <button class="login-btn">LOG IN</button>
             </a>
         </div>
@@ -120,7 +120,7 @@
                 <p style="margin-top: 20px; font-weight: bold; color: #aaa; font-size: 0.7rem;">TOTAL ITEMS</p>
                 <h2 id="summary-count" style="margin-top: 5px; font-size: 2rem;">0</h2>
                 <button class="checkout-btn" onclick="handleCheckout()">PROCEED TO CHECKOUT</button>
-                <p style="text-align: center; margin-top: 15px;"><a href="/Preorder/preorder.html" style="color: #ff6b6b; text-decoration: none; font-size: 0.8rem;">↺ BACK TO ORDER PRODUCTS</a></p>
+                <p style="text-align: center; margin-top: 15px;"><a href="/drukbasket/Preorder/preorder.html" style="color: #ff6b6b; text-decoration: none; font-size: 0.8rem;">↺ BACK TO ORDER PRODUCTS</a></p>
             </aside>
         </div>
     </main>
@@ -191,13 +191,13 @@
             if (!isLoggedIn) {
                 localStorage.setItem('redirectAfterLogin', window.location.href);
                 alert("Please login to proceed.");
-                window.location.href = '/login.html';
+                window.location.href = '/drukbasket/login.html';
             } else {
                 // Optional: Calculate and store total for selected items only
                 let total = selectedItems.reduce((sum, item) => sum + (parseFloat(item.price) * item.qty), 0);
                 localStorage.setItem('tempTotalPayable', total + 75); // Nu. 75 delivery fee
                 
-                window.location.href = '/Checkout/checkout.html';
+                window.location.href = '/drukbasket/Checkout/checkout.html';
             }
         }
 
