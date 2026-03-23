@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Farmer Portal | Druk Basket Demo</title>
-    <script src="/auth.js"></script>
-    <link rel="stylesheet" href="/style.css">
+    <script src="/drukbasket/auth.js"></script>
+    <link rel="stylesheet" href="/drukbasket/style.css">
     <style>
         body { background: #f0f2f5; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
         .portal-card { max-width: 600px; margin: 30px auto; background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
@@ -53,17 +53,17 @@
 <body>
     <header class="navbar">
         <div class="logo-container">
-            <img src="Images/logo.png" alt="Drukbasket Logo" class="main-logo">
+            <img src="/drukbasket/Images/logo.png" alt="Drukbasket Logo" class="main-logo">
         </div>
         <nav>
-            <a href="/supplierIndex.html">Marketplace</a>
-            <a href="/aboutUs.html">About Us</a>
-            <a href="/contactUs.html">Contact Us</a>
-            <a href="/supplier-portal.html" class="nav-supplier-btn">Supplier Portal</a>
+            <a href="/drukbasket/supplierIndex.html">Marketplace</a>
+            <a href="/drukbasket/aboutUs.html">About Us</a>
+            <a href="/drukbasket/contactUs.html">Contact Us</a>
+            <a href="/drukbasket/supplier-portal.html" class="nav-supplier-btn">Supplier Portal</a>
         </nav>
 
         <div class="user-actions">
-            <a href="/market-prices.html" style="text-decoration: none;">
+            <a href="/drukbasket/market-prices.html" style="text-decoration: none;">
                 <div class="live-logo-container">
                     <span class="market-price">View Current Market Prices</span>
                     <div class="recording-circle">
@@ -72,16 +72,16 @@
                     </div>
                 </div>
             </a>
-            <a href="Dzongkha/index.html" style="text-decoration: none;">EN</a>
+            <a href="/drukbasket/Dzongkha/index.html" style="text-decoration: none;">EN</a>
 
             <div class="cart-container" style="position: relative; display: inline-block; cursor: pointer;"
-                onclick="window.location.href='/Addtocart/addToCart.html'">
+                onclick="window.location.href='/drukbasket/Addtocart/addToCart.html'">
                 <span class="cart" style="font-size: 1.5rem;">🛒</span>
                 <span id="cart-count" class="cart-badge">0</span>
             </div>
 
             <span class="notification">🔔</span>
-            <a href="/login.html" class="login-btn-link">
+            <a href="/drukbasket/login.html" class="login-btn-link">
                 <button class="login-btn">LOG IN</button>
             </a>
         </div>
