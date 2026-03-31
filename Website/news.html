@@ -9,15 +9,18 @@
     .news-card { padding: 0; overflow: hidden; cursor: default; }
     .news-card:hover { transform: translateY(-4px); }
     .news-img {
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
+      height: 180px;
+      overflow: hidden;
     }
-    .news-img.update { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
-    .news-img.market { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
-    .news-img.training { background: linear-gradient(135deg, #f3e5f5, #e1bee7); }
+    .news-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .news-card:hover .news-img img {
+      transform: scale(1.06);
+    }
     .news-body { padding: 18px 22px 22px; }
     .news-body h3 { font-size: 1.05rem; font-weight: 700; margin: 10px 0 5px; line-height: 1.4; }
     .news-date { color: var(--muted); font-size: 0.8rem; font-weight: 600; }
@@ -91,12 +94,12 @@
 
   <script>
     const news = [
-      { id:1, cat:"update", tag:"UPDATE", icon:"🚀", title:"Dashboard analytics is now live", date:"2026-02-12", desc:"Home now displays real-time dashboard view with KPIs, top products and transaction feed." },
-      { id:2, cat:"market", tag:"MARKET", icon:"🌾", title:"New products added from farmers", date:"2026-02-10", desc:"Added seasonal vegetables and improved badge filtering for Organic / GAP / GI products." },
-      { id:3, cat:"training", tag:"TRAINING", icon:"📋", title:"Staff training schedule published", date:"2026-02-08", desc:"Training for staff area workflows: order verification, payments tracking and reporting." },
-      { id:4, cat:"update", tag:"UPDATE", icon:"🔒", title:"Login system upgraded with NDI support", date:"2026-02-05", desc:"New login page with NDI authentication, OTP verification, and improved security features." },
-      { id:5, cat:"market", tag:"MARKET", icon:"📊", title:"Live market prices feature launched", date:"2026-02-01", desc:"Farmers and buyers can now view real-time market prices updated daily across all dzongkhags." },
-      { id:6, cat:"training", tag:"TRAINING", icon:"🎓", title:"Farmer onboarding workshops begin", date:"2026-01-28", desc:"District-level workshops to help farmers register, list products, and use the platform effectively." },
+      { id:1, cat:"update", tag:"UPDATE", img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80", title:"Dashboard analytics is now live", date:"2026-02-12", desc:"Home now displays real-time dashboard view with KPIs, top products and transaction feed." },
+      { id:2, cat:"market", tag:"MARKET", img:"https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&q=80", title:"New products added from farmers", date:"2026-02-10", desc:"Added seasonal vegetables and improved badge filtering for Organic / GAP / GI products." },
+      { id:3, cat:"training", tag:"TRAINING", img:"https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80", title:"Staff training schedule published", date:"2026-02-08", desc:"Training for staff area workflows: order verification, payments tracking and reporting." },
+      { id:4, cat:"update", tag:"UPDATE", img:"https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&q=80", title:"Login system upgraded with NDI support", date:"2026-02-05", desc:"New login page with NDI authentication, OTP verification, and improved security features." },
+      { id:5, cat:"market", tag:"MARKET", img:"https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&q=80", title:"Live market prices feature launched", date:"2026-02-01", desc:"Farmers and buyers can now view real-time market prices updated daily across all dzongkhags." },
+      { id:6, cat:"training", tag:"TRAINING", img:"https://images.unsplash.com/photo-1531545514256-b1400bc00f31?w=600&q=80", title:"Farmer onboarding workshops begin", date:"2026-01-28", desc:"District-level workshops to help farmers register, list products, and use the platform effectively." },
     ];
 
     const grid = document.getElementById("newsGrid");
@@ -113,7 +116,7 @@
       });
       grid.innerHTML = filtered.map(n => `
         <div class="card news-card">
-          <div class="news-img ${n.cat}">${n.icon}</div>
+          <div class="news-img"><img src="${n.img}" alt="${n.title}" /></div>
           <div class="news-body">
             <span class="tag ${n.cat}">${n.tag}</span>
             <h3>${n.title}</h3>
