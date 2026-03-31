@@ -302,22 +302,42 @@
 
         /* ── Small tablet / large phone ── */
         @media (max-width: 720px) {
+            .hamburger {
+                display: flex;
+            }
+
             .navbar {
                 padding: 12px 14px;
                 gap: 10px;
+                flex-wrap: wrap;
             }
 
             .navbar nav {
+                display: none;
                 order: 3;
                 width: 100%;
-                justify-content: center;
-                gap: 12px;
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
                 border-top: 1px solid var(--border-soft);
-                padding-top: 10px;
+                padding-top: 8px;
+                margin-top: 4px;
+            }
+
+            .navbar nav.active {
+                display: flex;
             }
 
             .navbar nav a {
-                font-size: 0.85rem;
+                font-size: 0.95rem;
+                padding: 12px 0;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid var(--border-soft);
+            }
+
+            .navbar nav a:last-child {
+                border-bottom: none;
             }
 
             .user-actions {
@@ -543,6 +563,43 @@
                 font-size: 0.85rem;
             }
         }
+          .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background: var(--text-dark);
+            border-radius: 3px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .navbar nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 <body>
@@ -551,7 +608,16 @@
         <div class="logo-container">
             <img src="/drukbasket/Images/logo.png" alt="Drukbasket Logo" class="main-logo">
         </div>
-        <nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="nav-menu">
+            <a href="../index.html">Marketplace</a>
+            <a href="../aboutUs.html">About Us</a>
+            <a href="../contactUs.html">Contact Us</a>
+        </nav>
             <a href="/drukbasket/index.html">Marketplace</a>
             <a href="/drukbasket/aboutUs.html">About Us</a>
             <a href="/drukbasket/contactUs.html">Contact Us</a>
@@ -897,6 +963,13 @@
 
         // Optional: say welcome on load if already enabled
         if (talkEnabled) setTimeout(talkWelcome, 600);
+                // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navMenu.classList.toggle('active');
+        });
     </script>
 </body>
 </html>
