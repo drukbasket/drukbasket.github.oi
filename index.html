@@ -4,148 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Druk Basket | Marketplace</title>
-    <script src="/drukbasket/auth.js"></script>
-    <link rel="stylesheet" href="/drukbasket/style.css">
+    <script src="../auth.js" defer></script>
+    <link rel="stylesheet" href="../style.css">
     <style>
-:root {
+        :root {
             --primary-green: #2d6a4f;
+            --primary-green-dark: #1f4d38;
+            --primary-green-soft: #edf7f1;
             --accent-gold: #f1c40f;
+            --accent-orange: #f39c12;
             --earth-brown: #4a3728;
-            --light-bg: #f9fbf9;
+            --light-bg: #f6faf7;
+            --card-bg: #ffffff;
+            --text-dark: #21352b;
+            --text-soft: #6f7f76;
+            --border-soft: rgba(45, 106, 79, 0.14);
+            --shadow-soft: 0 20px 45px rgba(25, 60, 42, 0.08);
+            --shadow-card: 0 14px 30px rgba(20, 50, 32, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--light-bg);
+            background:
+                radial-gradient(circle at top left, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 24%),
+                linear-gradient(180deg, #f4faf6 0%, #eef7f1 45%, #fbfdfb 100%);
             margin: 0;
-            color: var(--earth-brown);
+            color: var(--text-dark);
         }
 
-        /* Header & Navigation */
         .navbar {
-            background: white;
-            padding: 1rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            padding: 16px 5%;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
             flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(45, 106, 79, 0.08);
         }
 
-        .nav-supplier-btn {
-            background: var(--primary-green);
-            color: white !important;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            text-decoration: none;
-            box-shadow: 0 4px 0 #1b4332; /* 3D effect for easier clicking */
-        }
-
-        .nav-supplier-btn:active { transform: translateY(2px); box-shadow: none; }
-
-        /* Market Price Live Indicator */
-        .live-logo-container {
-            display: inline-flex;
-            align-items: center;
-            background: #fff5f5;
-            padding: 5px 12px;
-            border-radius: 20px;
-            border: 1px solid #ff0000;
-        }
-
-        /* Filter Bar - Made Chunkier for Fingers */
-        .filter-bar {
-            background: #fff;
-            padding: 20px;
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-            border-bottom: 2px solid #eee;
-        }
-
-        .filter-bar input, .filter-bar select {
-            padding: 12px;
-            font-size: 16px; /* Prevents iOS zoom-in */
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            min-width: 200px;
-        }
-
-        .search-btn {
-            background: var(--primary-green);
-            color: white;
+        .hamburger {
+            display: none;
+            background: none;
             border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: bold;
             cursor: pointer;
+            padding: 6px;
+            flex-direction: column;
+            gap: 5px;
         }
 
-        /* Product Cards */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            padding: 20px;
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background: var(--text-dark);
+            border-radius: 3px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        .card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #e0e0e0;
-            transition: transform 0.2s;
-            position: relative;
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
         }
 
-        .card:hover { transform: translateY(-5px); }
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
 
-        .price {
-            font-size: 1.4rem;
-            font-weight: 800;
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        .navbar nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .navbar nav a {
+            text-decoration: none;
+            color: var(--earth-brown);
+            font-weight: 600;
+            font-size: 0.96rem;
+            transition: color 0.2s ease;
+        }
+
+        .navbar nav a:hover {
             color: var(--primary-green);
-            margin: 10px 0;
         }
 
-        /* Bigger, clearer buttons for farmers */
-        .btn-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            padding: 15px;
+        .main-logo {
+            height: 42px;
+            display: block;
         }
 
-        .add-cart { background: #e8f5e9; color: var(--primary-green); border: 1px solid var(--primary-green); }
-        .preorder { background: var(--earth-brown); color: white; }
-
-        .badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            z-index: 1;
-        }
-        
-        /* High Contrast Badges */
-        .badge.organic { background: #2ecc71; color: white; }
-        .badge.gi-tag { background: #f1c40f; color: #000; }
-        .badge.gap { background: #3498db; color: white; }
-
-        @media (max-width: 600px) {
-            .filter-bar input, .filter-bar select { width: 100%; }
-            .navbar { justify-content: center; gap: 15px; }
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
         }
 
-        /* Header Logo Styling */
         .live-logo-container {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
+            gap: 8px;
+            background: #fff5f5;
+            padding: 7px 12px;
+            border-radius: 999px;
+            border: 1px solid #ffb8b8;
+            color: #8f1e1e;
+            font-weight: 700;
+            font-size: 0.88rem;
         }
 
         .recording-circle {
@@ -177,21 +156,368 @@
             50% { opacity: 0.4; }
         }
 
-        /* Ensure the grid looks good */
+        .hero-section {
+            padding: 42px 5% 18px;
+        }
+
+        .hero-shell {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 24px;
+            align-items: stretch;
+            background: linear-gradient(135deg, #1f5c42 0%, #2d6a4f 45%, #4ca276 100%);
+            color: #fff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .hero-copy {
+            padding: 42px;
+            position: relative;
+        }
+
+        .hero-copy::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -40px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            font-weight: 700;
+            font-size: 0.84rem;
+            margin-bottom: 18px;
+        }
+
+        .hero-copy h1 {
+            margin: 0 0 16px;
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            line-height: 1.08;
+            max-width: 640px;
+        }
+
+        .hero-copy p {
+            margin: 0;
+            max-width: 620px;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 28px;
+            max-width: 680px;
+        }
+
+        .hero-stat {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
+            padding: 16px;
+        }
+
+        .hero-stat strong {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+
+        .hero-stat span {
+            font-size: 0.86rem;
+            color: rgba(255, 255, 255, 0.86);
+        }
+
+        .hero-panel {
+            padding: 28px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-panel-card {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 22px;
+            padding: 24px;
+        }
+
+        .hero-panel-card h2 {
+            margin: 0 0 10px;
+            font-size: 1.4rem;
+        }
+
+        .hero-panel-card p {
+            margin: 0 0 18px;
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .hero-list-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.92rem;
+            line-height: 1.55;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .hero-list-item span {
+            flex-shrink: 0;
+        }
+
+        .search-panel-wrap {
+            padding: 20px 5% 8px;
+        }
+
+        .filter-bar {
+            background: rgba(255, 255, 255, 0.96);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            border: 1px solid rgba(45, 106, 79, 0.08);
+            border-radius: 22px;
+            box-shadow: 0 14px 30px rgba(20, 50, 32, 0.05);
+        }
+
+        .filter-bar-top {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .filter-bar input {
+            padding: 16px 18px;
+            font-size: 17px;
+            border: 1px solid #d6e2da;
+            border-radius: 14px;
+            width: 100%;
+            color: var(--text-dark);
+            background: #fff;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .filter-bar input:focus {
+            border-color: rgba(45, 106, 79, 0.45);
+            box-shadow: 0 0 0 4px rgba(45, 106, 79, 0.08);
+        }
+
+        .search-btn {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+            color: white;
+            border: none;
+            padding: 16px 26px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 16px;
+            cursor: pointer;
+            white-space: nowrap;
+            box-shadow: 0 12px 24px rgba(31, 77, 56, 0.18);
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .cat-tab {
+            padding: 12px 20px;
+            border-radius: 999px;
+            border: 2px solid #d6e2da;
+            background: #fff;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s, border-color 0.18s;
+        }
+
+        .cat-tab:hover {
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        .cat-tab.active {
+            background: var(--primary-green);
+            color: #fff;
+            border-color: var(--primary-green);
+        }
+
+        .product-count {
+            padding: 14px 5% 0;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+            font-weight: 600;
+        }
+
+        .catalog-header {
+            padding: 24px 5% 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .catalog-header h2 {
+            margin: 0;
+            font-size: 1.7rem;
+            color: var(--text-dark);
+        }
+
+        .catalog-header p {
+            margin: 8px 0 0;
+            color: var(--text-soft);
+            line-height: 1.6;
+            max-width: 640px;
+        }
+
+        .catalog-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: var(--primary-green-soft);
+            color: var(--primary-green);
+            font-weight: 800;
+            font-size: 0.88rem;
+        }
+
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            padding: 16px 5% 60px;
             min-height: 400px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid rgba(45, 106, 79, 0.08);
+            transition: transform 0.24s ease, box-shadow 0.24s ease;
+            position: relative;
+            box-shadow: var(--shadow-card);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 22px 36px rgba(20, 50, 32, 0.12);
+        }
+
+        .product-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
         }
 
         .card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            border-radius: 8px 8px 0 0;
+            display: block;
         }
+
+        .card-content {
+            padding: 18px 18px 16px;
+        }
+
+        .card-content.no-top {
+            padding-top: 0;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.18rem;
+            font-weight: 700;
+            line-height: 1.35;
+            color: var(--text-dark);
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-green);
+            margin: 8px 0 0;
+        }
+
+        .product-meta {
+            display: none;
+        }
+
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .btn-group button {
+            border-radius: 14px;
+            padding: 16px 12px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .btn-group button:hover {
+            transform: translateY(-1px);
+        }
+
+        .add-cart {
+            background: var(--primary-green);
+            color: #fff;
+        }
+
+        .preorder {
+            background: #f0f0f0;
+            color: var(--earth-brown);
+            border: 1px solid #ddd;
+        }
+
+        .badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: 0.76rem;
+            z-index: 1;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .badge.organic { background: #2ecc71; color: white; }
+        .badge.gi-tag { background: #f1c40f; color: #000; }
+        .badge.gap { background: #3498db; color: white; }
 
         .cart-badge {
             position: absolute;
@@ -205,49 +531,39 @@
             display: none;
         }
 
-        /* Style for empty search results */
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 50px;
-            font-size: 1.2rem;
-            color: #666;
+            padding: 60px 20px;
+            font-size: 1.08rem;
+            color: #6b7c72;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px dashed #c9d8cf;
+            border-radius: 20px;
         }
 
-        /* Badge colors for categories */
-        .badge.organic { background: #2ecc71; color: white; }
-        .badge.gi-tag { background: #f1c40f; color: black; }
-        .badge.gap { background: #3498db; color: white; }
-
-        /* NEW: Supplier Link Styling to match Nav */
-        .nav-supplier-btn {
-            background: #27ae60;
-            color: white !important;
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
-        /* =========================
-           FARMER TALK BACK (NEW)
-           Right + Below (bottom-right)
-           ========================= */
         .talkback-btn {
             border: none;
             cursor: pointer;
-            padding: 14px 16px;
-            border-radius: 14px;
+            padding: 16px 22px;
+            border-radius: 16px;
             font-weight: 900;
             background: #f5f5f5;
             color: #222;
-            box-shadow: 0 10px 22px rgba(0,0,0,0.25);
-            font-size: 16px;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.28);
+            font-size: 17px;
+            letter-spacing: 0.01em;
         }
+
         .talkback-btn.on {
             background: var(--primary-green);
             color: white;
         }
-        .talkback-btn:active { transform: translateY(1px); box-shadow: none; }
+
+        .talkback-btn:active {
+            transform: translateY(1px);
+            box-shadow: none;
+        }
 
         .talkback-float {
             position: fixed;
@@ -263,22 +579,24 @@
             }
         }
 
-        /* small toast (optional feedback) */
         .toast {
             position: fixed;
             left: 50%;
-            bottom: 18px;
+            bottom: 80px;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.85);
+            background: var(--primary-green);
             color: #fff;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 14px;
+            padding: 14px 22px;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 700;
             z-index: 9999;
             display: none;
             max-width: 92vw;
             text-align: center;
+            box-shadow: 0 8px 24px rgba(31, 77, 56, 0.35);
         }
+
         /* ── Tablet ── */
         @media (max-width: 980px) {
             .hero-shell,
@@ -563,69 +881,50 @@
                 font-size: 0.85rem;
             }
         }
-          .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 6px;
-            flex-direction: column;
+
+
+        /* ── Card entrance animation ── */
+        @keyframes cardFadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            animation: cardFadeIn 0.35s ease both;
+        }
+
+        /* ── Product footer label ── */
+        .card-footer {
+            padding: 8px 18px 14px;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            display: flex;
+            align-items: center;
             gap: 5px;
         }
 
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 3px;
-            background: var(--text-dark);
-            border-radius: 3px;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .hamburger.open span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 6px);
-        }
-
-        .hamburger.open span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -6px);
-        }
-
-        .navbar nav {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex-wrap: wrap;
-        }
     </style>
 </head>
 <body>
-
     <header class="navbar">
         <div class="logo-container">
-            <img src="/drukbasket/Images/logo.png" alt="Drukbasket Logo" class="main-logo">
+            <img src="../Images/logo.png" alt="Drukbasket Logo" class="main-logo">
         </div>
+
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
             <span></span>
             <span></span>
             <span></span>
         </button>
+
         <nav id="nav-menu">
             <a href="../index.html">Marketplace</a>
             <a href="../aboutUs.html">About Us</a>
             <a href="../contactUs.html">Contact Us</a>
         </nav>
-            <a href="/drukbasket/index.html">Marketplace</a>
-            <a href="/drukbasket/aboutUs.html">About Us</a>
-            <a href="/drukbasket/contactUs.html">Contact Us</a>
-            <!---<a href="/supplier-portal.html" class="nav-supplier-btn">Supplier Portal</a>--->
-        </nav>
 
         <div class="user-actions">
-            <a href="/drukbasket/market-prices.html" style="text-decoration: none;">
+            <a href="/../market-prices.html" style="text-decoration: none;">
                 <div class="live-logo-container">
                     <span class="market-price">View Current Market Prices</span>
                     <div class="recording-circle">
@@ -634,44 +933,47 @@
                     </div>
                 </div>
             </a>
-            <a href="/drukbasket/Dzongkha/index.html" style="text-decoration: none;">EN</a>
+
+            <a href="Dzongkha/index.html" style="text-decoration: none;">DZ</a>
 
             <div class="cart-container" style="position: relative; display: inline-block; cursor: pointer;"
-                onclick="window.location.href='/drukbasket/AddtoCart/addToCart.html'">
+                onclick="window.location.href='/Addtocart/addToCart.html'">
                 <span class="cart" style="font-size: 1.5rem;">🛒</span>
                 <span id="cart-count" class="cart-badge">0</span>
             </div>
 
-            <span class="notification">🔔</span>
-            <a href="/drukbasket/login.html" class="login-btn-link">
-                <button class="login-btn">LOG IN</button>
-            </a>
+            <span class="notification" role="button" aria-label="Notifications">🔔</span>
+
+            <a href="/login.html" class="login-btn">LOG IN</a>
         </div>
     </header>
 
-    <section class="filter-bar">
-        <input type="text" id="productSearch" placeholder="Search by keyword (e.g. Chilli, Rice)">
-        <select id="categoryFilter">
-            <option value="all">Select Category</option>
-            <option value="Organic">Certified Organic Product</option>
-            <option value="GI Tag">GI Tag Product</option>
-            <option value="GAP">GAP Product</option>
-        </select>
-        <button class="search-btn">🔍</button>
+    <section class="search-panel-wrap">
+        <div class="filter-bar">
+            <div class="filter-bar-top">
+                <input type="text" id="productSearch" placeholder="🔍  Search (e.g. Chilli, Rice, Honey)">
+                <button class="search-btn" type="button">Search</button>
+            </div>
+            <div class="category-tabs" role="group" aria-label="Filter by category">
+                <button class="cat-tab active" data-cat="all">All</button>
+                <button class="cat-tab" data-cat="Organic">🌿 Organic</button>
+                <button class="cat-tab" data-cat="GI Tag">🏷️ GI Tag</button>
+                <button class="cat-tab" data-cat="GAP">✅ GAP</button>
+            </div>
+        </div>
     </section>
+
+    <p class="product-count" id="product-count"></p>
 
     <main class="product-grid" id="product-grid"></main>
 
-    <!-- Toast -->
     <div id="toast" class="toast"></div>
 
-    <!-- TALK BACK ON RIGHT + BELOW (bottom-right) -->
     <button id="talkbackToggle" class="talkback-btn talkback-float" type="button" title="Talk Back for farmers">
         🔈 Talk Back: OFF
     </button>
 
     <script>
-        // ... (Keep your original products array exactly as it was)
         const products = [
             { name: "Red Onion", price: "60", unit: "Kg", badge: "GAP", img: "Images/red-onion.jpg" },
             { name: "Local Potato", price: "45", unit: "Kg", badge: "GI Tag", img: "Images/local-potato.jpg" },
@@ -725,16 +1027,32 @@
             { name: "Cinnamon Sticks", price: "150", unit: "Pkt", badge: "GI Tag", img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=300" }
         ];
 
+        function escapeAttr(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
         const grid = document.getElementById('product-grid');
         const searchInput = document.getElementById('productSearch');
-        const categoryFilter = document.getElementById('categoryFilter');
-
-        /* =========================
-           FARMER TALK BACK (NEW)
-           ========================= */
+        const categoryTabs = document.querySelectorAll('.cat-tab');
+        const productCountEl = document.getElementById('product-count');
         const talkBtn = document.getElementById('talkbackToggle');
         const toast = document.getElementById('toast');
+        let selectedCat = 'all';
         let talkEnabled = localStorage.getItem('talkBackEnabled') === '1';
+
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                selectedCat = tab.dataset.cat;
+                updateDisplay();
+            });
+        });
 
         function showToast(msg) {
             toast.innerText = msg;
@@ -768,10 +1086,6 @@
             u.pitch = 1;
             u.volume = 1;
             window.speechSynthesis.speak(u);
-        }
-
-        function friendlyPrice(p) {
-            return `Nu ${p.price} per ${p.unit}`;
         }
 
         function buildFarmerTalk(p) {
@@ -813,12 +1127,12 @@
 
         function updateDisplay() {
             const searchText = searchInput.value.toLowerCase();
-            const selectedCat = categoryFilter.value;
             const filtered = products.filter(p => {
                 const matchesSearch = p.name.toLowerCase().includes(searchText);
                 const matchesCategory = (selectedCat === "all") || (p.badge === selectedCat);
                 return matchesSearch && matchesCategory;
             });
+            productCountEl.textContent = `${filtered.length} product${filtered.length !== 1 ? 's' : ''} found`;
             renderGrid(filtered);
 
             if (talkEnabled) {
@@ -835,7 +1149,7 @@
                 return;
             }
 
-            grid.innerHTML = data.map(p => {
+            grid.innerHTML = data.map((p, i) => {
                 const params = new URLSearchParams({
                     name: p.name,
                     price: p.price,
@@ -845,30 +1159,34 @@
                 }).toString();
 
                 const safeBadge = (p.badge || "").toLowerCase().replace(' ', '-');
+                const delay = Math.min(i * 0.05, 0.6).toFixed(2);
 
                 return `
                     <div class="card"
-                         data-name="${String(p.name).replace(/"/g, '&quot;')}"
-                         data-price="${p.price}"
-                         data-unit="${p.unit}"
-                         data-badge="${String(p.badge || "").replace(/"/g, '&quot;')}"
+                         style="animation-delay: ${delay}s"
+                         data-name="${escapeAttr(p.name)}"
+                         data-price="${escapeAttr(p.price)}"
+                         data-unit="${escapeAttr(p.unit)}"
+                         data-badge="${escapeAttr(p.badge || '')}"
+                         data-img="${escapeAttr(p.img)}"
                          tabindex="0"
                          role="button"
-                         aria-label="Product ${p.name}">
-                        <a href="/drukbasket/Product/product.html?${params}" class="product-link" style="text-decoration: none;">
-                            ${p.badge ? `<span class="badge ${safeBadge}">${p.badge}</span>` : ''}
-                            <img src="${p.img}" alt="${p.name}">
+                         aria-label="Product ${escapeAttr(p.name)}">
+                        <a href="Product/product.html?${params}" class="product-link">
+                            ${p.badge ? `<span class="badge ${safeBadge}">${escapeAttr(p.badge)}</span>` : ''}
+                            <img src="${escapeAttr(p.img)}" alt="${escapeAttr(p.name)}">
                             <div class="card-content">
-                                <h3>${p.name}</h3>
-                                <p class="price">Nu. ${p.price} /${p.unit}</p>
+                                <h3>${escapeAttr(p.name)}</h3>
+                                <p class="price">Nu. ${escapeAttr(p.price)} /${escapeAttr(p.unit)}</p>
                             </div>
                         </a>
                         <div class="card-content no-top">
                             <div class="btn-group">
-                                <button class="add-cart" onclick="addToCart('${p.name}', '${p.price}', '${p.unit}', '${p.img}', '${p.badge}')">ADD TO CART</button>
-                                <button class="preorder" onclick="window.location.href='/drukbasket/Preorder/preorder.html'">PREORDER</button>
+                                <button class="add-cart" data-action="cart">🛒 Add to Cart</button>
+                                <button class="preorder" data-action="preorder">📦 Preorder</button>
                             </div>
                         </div>
+                        <div class="card-footer">🌾 Bhutanese Product</div>
                     </div>
                 `;
             }).join('');
@@ -883,12 +1201,19 @@
                 const price = card.getAttribute('data-price');
                 const unit = card.getAttribute('data-unit');
                 const badge = card.getAttribute('data-badge') || "";
-
+                const img = card.getAttribute('data-img') || "";
                 const message = buildFarmerTalk({ name, price, unit, badge });
 
                 card.addEventListener('click', (e) => {
                     const btn = e.target.closest('button');
-                    if (btn) return; // buttons handled separately
+                    if (btn) {
+                        if (btn.dataset.action === 'cart') {
+                            addToCart(name, price, unit, img, badge);
+                        } else if (btn.dataset.action === 'preorder') {
+                            window.location.href = '/Preorder/preorder.html';
+                        }
+                        return;
+                    }
                     speak(message);
                 });
 
@@ -901,7 +1226,7 @@
         }
 
         searchInput.addEventListener('input', updateDisplay);
-        categoryFilter.addEventListener('change', updateDisplay);
+        document.querySelector('.search-btn').addEventListener('click', updateDisplay);
 
         function updateBadge() {
             const cart = JSON.parse(localStorage.getItem('drukCart')) || [];
@@ -915,55 +1240,63 @@
         function addToCart(name, price, unit, img, badge) {
             let cartItems = JSON.parse(localStorage.getItem('drukCart')) || [];
             const existingItem = cartItems.find(item => item.name === name);
+            let targetItem;
             if (existingItem) {
                 existingItem.qty++;
+                targetItem = existingItem;
             } else {
-                cartItems.push({
+                targetItem = {
                     name, price, img, unit,
                     badge: badge || "Organic",
                     qty: 1,
                     selected: true,
                     timestamp: Date.now()
-                });
+                };
+                cartItems.push(targetItem);
             }
             localStorage.setItem('drukCart', JSON.stringify(cartItems));
             updateBadge();
-            processCheckoutSimulation();
-
-            showToast(`${name} added to cart`);
+            processCheckoutSimulation(targetItem);
+            showToast(`✅ ${name} added! Great choice 🌿`);
             speak(`${name} added to cart. Price Nu ${price} per ${unit}. Open cart from top to checkout.`);
         }
 
-        function processCheckoutSimulation() {
-            const cart = JSON.parse(localStorage.getItem('drukCart')) || [];
+        function processCheckoutSimulation(item) {
             const orders = JSON.parse(localStorage.getItem('pendingOrders')) || [];
-            const newOrders = cart.map(item => ({ ...item, timestamp: Date.now() }));
-            localStorage.setItem('pendingOrders', JSON.stringify([...orders, ...newOrders]));
+            orders.push({ ...item, timestamp: Date.now() });
+            localStorage.setItem('pendingOrders', JSON.stringify(orders));
+        }
+
+        const ALLOWED_BADGES = ["Organic", "GI Tag", "GAP"];
+
+        function sanitizeApprovedProduct(ap) {
+            const name = String(ap.name || "").trim().slice(0, 100);
+            const price = String(parseFloat(ap.price) || 0);
+            const unit = String(ap.unit || "").trim().slice(0, 30);
+            const badge = ALLOWED_BADGES.includes(ap.badge) ? ap.badge : "Organic";
+            const imgStr = String(ap.img || "");
+            const img = (/^https?:\/\//.test(imgStr) || imgStr.startsWith("Images/")) ? imgStr : "";
+            return { name, price, unit, badge, img };
         }
 
         function loadApprovedProducts() {
             const approvedProducts = JSON.parse(localStorage.getItem('approvedFarmerProducts')) || [];
             approvedProducts.forEach(ap => {
-                if(!products.find(p => p.name === ap.name)) {
-                    products.push({
-                        name: ap.name,
-                        price: ap.price,
-                        unit: ap.unit,
-                        badge: ap.badge || "Organic",
-                        img: ap.img
-                    });
+                const safe = sanitizeApprovedProduct(ap);
+                if (safe.name && !products.find(p => p.name === safe.name)) {
+                    products.push(safe);
                 }
             });
         }
 
-        loadApprovedProducts(); 
-        shuffleArray(products); 
-        updateDisplay(); 
+        loadApprovedProducts();
+        shuffleArray(products);
+        updateDisplay();
         updateBadge();
 
-        // Optional: say welcome on load if already enabled
         if (talkEnabled) setTimeout(talkWelcome, 600);
-                // Hamburger menu toggle
+
+        // Hamburger menu toggle
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
         hamburger.addEventListener('click', () => {
@@ -972,4 +1305,3 @@
         });
     </script>
 </body>
-</html>
