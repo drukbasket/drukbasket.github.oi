@@ -6,72 +6,37 @@
   <title>Druk Basket | Home</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Who We Are */
     .who-card {
-      max-width: 780px;
+      max-width: 740px;
       margin: 0 auto;
-      padding: 40px 36px;
+      padding: 36px 32px;
       text-align: center;
       border-top: 3px solid var(--green);
-      position: relative;
     }
-    .who-card p {
-      font-size: 1.05rem;
-      line-height: 1.85;
-      color: var(--text-light);
-    }
-    .who-card p + p { margin-top: 14px; }
+    .who-card p { font-size: 1rem; line-height: 1.85; color: var(--text-light); }
+    .who-card p + p { margin-top: 12px; }
 
-    /* Vision / Mission */
-    .vm-card {
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .vm-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .vm-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+    .vm-card { padding: 28px 24px; display: flex; flex-direction: column; gap: 14px; }
+    .vm-header { display: flex; align-items: center; gap: 12px; }
+    .vm-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .vm-icon.vision { background: var(--green-light); }
     .vm-icon.mission { background: var(--gold-light); }
-    .vm-icon svg { width: 22px; height: 22px; }
-    .vm-title { font-size: 1.2rem; font-weight: 800; }
-    .vm-text {
-      font-size: 0.98rem;
-      line-height: 1.8;
-      color: var(--text-light);
-      font-style: italic;
-    }
+    .vm-icon svg { width: 20px; height: 20px; }
+    .vm-title { font-size: 1.12rem; font-weight: 800; }
+    .vm-text { font-size: 0.92rem; line-height: 1.8; color: var(--text-light); font-style: italic; }
     .vm-card.vision-card { border-left: 3px solid var(--green); }
     .vm-card.mission-card { border-left: 3px solid var(--gold); }
 
-    /* News preview cards */
     .news-preview { padding: 0; overflow: hidden; }
-    .news-preview-img {
-      height: 140px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-    }
+    .news-preview:hover { transform: translateY(-4px); }
+    .news-preview-img { height: 130px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
     .news-preview-img.up { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
     .news-preview-img.mk { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
     .news-preview-img.tr { background: linear-gradient(135deg, #f3e5f5, #e1bee7); }
-    .news-preview-body { padding: 18px 22px 22px; }
-    .news-preview-body h3 { font-size: 1.02rem; font-weight: 700; margin: 10px 0 4px; line-height: 1.4; }
-    .news-preview-date { color: var(--muted); font-size: 0.8rem; font-weight: 600; }
-    .news-preview-desc { margin-top: 8px; color: var(--text-light); font-size: 0.88rem; line-height: 1.6; }
+    .news-preview-body { padding: 16px 20px 20px; }
+    .news-preview-body h3 { font-size: 0.96rem; font-weight: 700; margin: 8px 0 3px; line-height: 1.4; }
+    .news-preview-date { color: var(--muted); font-size: 0.76rem; font-weight: 600; }
+    .news-preview-desc { margin-top: 6px; color: var(--text-light); font-size: 0.84rem; line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -80,9 +45,12 @@
   <div class="nav-wrap">
     <div class="nav">
       <div class="logo-container">
-        <img src="/drukbasket/Images/logo.png" alt="Druk Basket Logo" class="main-logo" />
+        <img src="/Images/logo.png" alt="Druk Basket Logo" class="main-logo" />
       </div>
-      <div class="nav-left">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="nav-left" id="navLinks">
         <a class="active" href="home.html">Home</a>
         <a href="team.html">Our Team</a>
         <a href="news.html">News</a>
@@ -96,10 +64,10 @@
     </div>
   </div>
 
-  <!-- HERO WITH VIDEO BACKGROUND -->
-  <div class="hero" style="background: #0a1f14;">
+  <!-- HERO -->
+  <div class="hero" style="background: #081e12;">
     <video class="hero-video" autoplay muted loop playsinline>
-      <source src="/drukbasket/Images/Druk-Basket-video.mp4" type="video/mp4" />
+      <source src="/Images/Druk-Basket-video.mp4" type="video/mp4" />
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-inner">
@@ -107,14 +75,20 @@
       <h1>Farm Fresh. Certified Quality. Proudly Bhutanese.</h1>
       <p>Connecting local farmers with buyers across the kingdom. Organic, GI Tagged, and GAP certified products from Bhutan's finest growers.</p>
       <div class="hero-actions">
-        <a href="/drukbasket/index.html" class="btn-hero primary">Browse Marketplace</a>
+        <a href="/index.html" class="btn-hero primary">Browse Marketplace</a>
         <a href="stories.html" class="btn-hero outline">Read Farmer Stories</a>
       </div>
     </div>
   </div>
 
+  <!-- Spacer for fixed hero -->
+  <div class="hero-spacer"></div>
+
+  <!-- Scrollable content -->
+  <div class="page-content">
+
   <!-- STATS -->
-  <div class="stats-bar">
+  <div class="stats-bar reveal-stagger">
     <div class="stat-card">
       <div class="number">50+</div>
       <div class="label">Products Available</div>
@@ -135,11 +109,11 @@
 
   <!-- WHO WE ARE -->
   <div class="section">
-    <div class="section-header">
+    <div class="section-header reveal">
       <div class="section-label">About Us</div>
       <h2>Who We Are</h2>
     </div>
-    <div class="card who-card">
+    <div class="card who-card reveal">
       <p>DrukBasket is a digital agriculture marketplace connecting Bhutanese farmers directly with consumers, businesses, and export markets.</p>
       <p>DrukBasket strengthens farm-to-market supply chains and helps farmers access better market opportunities.</p>
     </div>
@@ -148,12 +122,11 @@
   <!-- VISION & MISSION -->
   <div class="section-alt">
     <div class="section">
-      <div class="section-header">
+      <div class="section-header reveal">
         <div class="section-label">Our Purpose</div>
         <h2>Vision & Mission</h2>
       </div>
-
-      <div class="grid-2">
+      <div class="grid-2 reveal-stagger">
         <div class="card vm-card vision-card">
           <div class="vm-header">
             <div class="vm-icon vision">
@@ -163,7 +136,6 @@
           </div>
           <p class="vm-text">"To position Bhutan as a leader in sustainable agri-tech by creating a technology-enabled ecosystem that drives high-value exports, enhances food traceability, and significantly improves rural livelihoods."</p>
         </div>
-
         <div class="card vm-card mission-card">
           <div class="vm-header">
             <div class="vm-icon mission">
@@ -179,59 +151,41 @@
 
   <!-- WHAT WE OFFER -->
   <div class="section">
-    <div class="section-header">
+    <div class="section-header reveal">
       <div class="section-label">Our Services</div>
       <h2>What We Offer</h2>
       <p>A digital platform empowering Bhutanese farmers and connecting them directly to markets.</p>
     </div>
-
-    <div class="grid-3">
+    <div class="grid-3 reveal-stagger">
       <div class="card feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <h3>Certified Products</h3>
-        <p>All products carry Organic, GI Tag, or GAP certification ensuring quality and authenticity.</p>
+        <p>Organic, GI Tag, or GAP certification ensuring quality and authenticity.</p>
       </div>
-
       <div class="card feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
-        </div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
         <h3>Market Analytics</h3>
         <p>Real-time dashboard showing top products, live transactions, and market trends.</p>
       </div>
-
       <div class="card feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <h3>Farmer Community</h3>
-        <p>Connect with fellow farmers, share success stories, and learn best practices.</p>
+        <p>Connect with fellow farmers, share stories, and learn best practices.</p>
       </div>
-
       <div class="card feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
         <h3>Market Prices</h3>
-        <p>View live market prices updated daily so you know the fair value of your produce.</p>
+        <p>Live market prices updated daily so you know the fair value of your produce.</p>
       </div>
-
       <div class="card feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
         <h3>Nationwide Reach</h3>
-        <p>Covering all 20 Dzongkhags, bringing products from remote farms to urban buyers.</p>
+        <p>Covering all 20 Dzongkhags, from remote farms to urban buyers.</p>
       </div>
-
       <div class="card feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-        </div>
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
         <h3>Dzongkha Support</h3>
-        <p>Full Dzongkha language support and voice assistance for accessible use by all farmers.</p>
+        <p>Full Dzongkha language and voice assistance for all farmers.</p>
       </div>
     </div>
   </div>
@@ -239,52 +193,48 @@
   <!-- LATEST NEWS -->
   <div class="section-alt">
     <div class="section">
-      <div class="section-header">
+      <div class="section-header reveal">
         <div class="section-label">Stay Updated</div>
         <h2>Latest News</h2>
-        <p>Platform updates, announcements, and highlights from the Druk Basket community.</p>
+        <p>Updates, announcements, and highlights from the Druk Basket community.</p>
       </div>
-
-      <div class="grid-3">
+      <div class="grid-3 reveal-stagger">
         <div class="card news-preview">
           <div class="news-preview-img up">🚀</div>
           <div class="news-preview-body">
             <span class="tag update">UPDATE</span>
             <h3>Dashboard Analytics Now Live</h3>
             <div class="news-preview-date">2026-02-12</div>
-            <div class="news-preview-desc">Real-time dashboard view with KPIs, top products and transaction feed.</div>
+            <div class="news-preview-desc">Real-time dashboard with KPIs, top products and transaction feed.</div>
           </div>
         </div>
-
         <div class="card news-preview">
           <div class="news-preview-img mk">🌾</div>
           <div class="news-preview-body">
             <span class="tag market">MARKET</span>
             <h3>New Products Added from Farmers</h3>
             <div class="news-preview-date">2026-02-10</div>
-            <div class="news-preview-desc">Seasonal vegetables and improved badge filtering for Organic, GAP, and GI.</div>
+            <div class="news-preview-desc">Seasonal vegetables and improved badge filtering for certifications.</div>
           </div>
         </div>
-
         <div class="card news-preview">
           <div class="news-preview-img tr">📋</div>
           <div class="news-preview-body">
             <span class="tag training">TRAINING</span>
             <h3>Staff Training Schedule Published</h3>
             <div class="news-preview-date">2026-02-08</div>
-            <div class="news-preview-desc">Staff workflows: order verification, payments tracking and reporting.</div>
+            <div class="news-preview-desc">Order verification, payments tracking and reporting workflows.</div>
           </div>
         </div>
       </div>
-
-      <div style="text-align: center; margin-top: 32px;">
+      <div style="text-align: center; margin-top: 28px;" class="reveal">
         <a href="news.html" class="btn btn-outline">View All News</a>
       </div>
     </div>
   </div>
 
-  <!-- CTA BANNER -->
-  <div class="section">
+  <!-- CTA -->
+  <div class="cta-wrap reveal">
     <div class="cta-banner">
       <h2>Ready to Sell Your Products?</h2>
       <p>Join hundreds of Bhutanese farmers on the Druk Basket marketplace.</p>
@@ -299,39 +249,36 @@
         <h3>Druk Basket</h3>
         <p>Bhutan's own agricultural marketplace connecting farmers directly to buyers. Fresh, certified, and proudly Bhutanese.</p>
       </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="home.html">Home</a></li>
-          <li><a href="team.html">Our Team</a></li>
-          <li><a href="news.html">News</a></li>
-          <li><a href="stories.html">Stories</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Platform</h4>
-        <ul>
-          <li><a href="/drukbasket/index.html">Marketplace</a></li>
-          <li><a href="/drukbasket/market-prices.html">Market Prices</a></li>
-          <li><a href="/drukbasket/login.html">Login</a></li>
-          <li><a href="staff.html">Staff Area</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="feedback.html">Give Feedback</a></li>
-          <li><a href="mailto:info@drukbasket.bt">info@drukbasket.bt</a></li>
-          <li><a href="tel:+975XXXXXXXX">+975-XXXXXXXX</a></li>
-        </ul>
-      </div>
+      <div><h4>Quick Links</h4><ul><li><a href="home.html">Home</a></li><li><a href="team.html">Our Team</a></li><li><a href="news.html">News</a></li><li><a href="stories.html">Stories</a></li></ul></div>
+      <div><h4>Platform</h4><ul><li><a href="/index.html">Marketplace</a></li><li><a href="/market-prices.html">Market Prices</a></li><li><a href="/login.html">Login</a></li><li><a href="staff.html">Staff Area</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="feedback.html">Give Feedback</a></li><li><a href="mailto:info@drukbasket.bt">info@drukbasket.bt</a></li><li><a href="tel:+975XXXXXXXX">+975-XXXXXXXX</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <span>2026 Druk Basket. All rights reserved.</span>
       <span>Ministry of Agriculture & Livestock, Bhutan</span>
     </div>
   </footer>
+
+  </div><!-- end page-content -->
+
+  <script>
+    // Mobile nav toggle
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>

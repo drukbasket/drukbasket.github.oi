@@ -90,8 +90,11 @@
 
   <div class="nav-wrap">
     <div class="nav">
-      <div class="logo-container"><img src="/drukbasket/Images/logo.png" alt="Druk Basket Logo" class="main-logo" /></div>
-      <div class="nav-left">
+      <div class="logo-container"><img src="/Images/logo.png" alt="Druk Basket Logo" class="main-logo" /></div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="nav-left" id="navLinks">
         <a href="home.html">Home</a>
         <a href="team.html">Our Team</a>
         <a href="news.html">News</a>
@@ -112,10 +115,10 @@
   </div>
 
   <div class="section">
-    <div id="storyGrid" class="grid-3"></div>
+    <div id="storyGrid" class="grid-3 reveal"></div>
   </div>
 
-  <div class="section section-sm">
+  <div class="cta-wrap reveal">
     <div class="cta-banner">
       <h2>Have a Story to Share?</h2>
       <p>We'd love to hear how Druk Basket has helped your farming journey.</p>
@@ -138,7 +141,7 @@
     <div class="footer-inner">
       <div class="footer-brand"><h3>Druk Basket</h3><p>Bhutan's own agricultural marketplace connecting farmers directly to buyers.</p></div>
       <div><h4>Quick Links</h4><ul><li><a href="home.html">Home</a></li><li><a href="team.html">Our Team</a></li><li><a href="news.html">News</a></li><li><a href="stories.html">Stories</a></li></ul></div>
-      <div><h4>Platform</h4><ul><li><a href="/drukbasket/index.html">Marketplace</a></li><li><a href="/drukbasket/market-prices.html">Market Prices</a></li><li><a href="/drukbasket/login.html">Login</a></li></ul></div>
+      <div><h4>Platform</h4><ul><li><a href="/index.html">Marketplace</a></li><li><a href="/market-prices.html">Market Prices</a></li><li><a href="/login.html">Login</a></li></ul></div>
       <div><h4>Contact</h4><ul><li><a href="contact.html">Contact Us</a></li><li><a href="feedback.html">Give Feedback</a></li></ul></div>
     </div>
     <div class="footer-bottom"><span>2026 Druk Basket. All rights reserved.</span><span>Ministry of Agriculture & Livestock, Bhutan</span></div>
@@ -193,6 +196,23 @@
 
     document.getElementById("closeModal").addEventListener("click", () => modal.classList.remove("open"));
     modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.remove("open"); });
+
+    // Mobile nav toggle
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>

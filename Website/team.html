@@ -11,7 +11,10 @@
   <div class="nav-wrap">
     <div class="nav">
       <div class="logo-container"><img src="/Images/logo.png" alt="Druk Basket Logo" class="main-logo" /></div>
-      <div class="nav-left">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="nav-left" id="navLinks">
         <a href="home.html">Home</a>
         <a class="active" href="team.html">Our Team</a>
         <a href="news.html">News</a>
@@ -32,13 +35,13 @@
   </div>
 
   <div class="section">
-    <div class="section-header">
+    <div class="section-header reveal">
       <div class="section-label">The People Behind the Platform</div>
       <h2>Project Team</h2>
       <p>A cross-functional team of officers from GAES, ARO, ADM, and ICTO working together.</p>
     </div>
 
-    <div class="grid-3">
+    <div class="grid-3 reveal">
       <div class="card team-card">
         <div class="team-avatar">TY</div>
         <div class="name">Tshering Yenten</div>
@@ -95,6 +98,25 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // Mobile nav toggle
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
 
   <footer class="footer">
     <div class="footer-inner">
