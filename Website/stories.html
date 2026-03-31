@@ -9,15 +9,16 @@
     .story-card { padding: 0; overflow: hidden; cursor: pointer; }
     .story-card:hover { transform: translateY(-5px); }
     .story-img {
-      height: 180px;
-      background: linear-gradient(135deg, #e8f5ee, #c8e6d0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.8rem;
-      transition: transform 0.4s var(--ease);
+      height: 200px;
+      overflow: hidden;
     }
-    .story-card:hover .story-img { transform: scale(1.03); }
+    .story-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .story-card:hover .story-img img { transform: scale(1.06); }
     .story-body { padding: 18px 22px 22px; }
     .story-body h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; line-height: 1.4; }
     .story-meta {
@@ -149,22 +150,28 @@
 
   <script>
     const stories = [
-      { title:"From Farm to Table: Organic Beetroot Success", author:"Farmer Group A", location:"Paro", date:"2026-02-11", icon:"🌱",
+      { title:"From Farm to Table: Organic Beetroot Success", author:"Farmer Group A", location:"Paro", date:"2026-02-11",
+        img:"https://images.unsplash.com/photo-1592921870789-04563d55041c?w=600&q=80",
         excerpt:"This season, our beetroot yield increased thanks to better composting and water management.",
         body:"This season, our beetroot yield increased thanks to better composting and water management. With the platform, we were able to sell faster and reduce wastage. Our group of 12 farmers worked together to implement organic practices, and the Druk Basket marketplace gave us direct access to buyers in Thimphu who were willing to pay fair prices for certified organic produce. We've seen a 40% increase in income compared to last year." },
-      { title:"GI Tag Yak Cheese Reaching New Buyers", author:"Dairy Cooperative", location:"Bumthang", date:"2026-02-07", icon:"🧀",
+      { title:"GI Tag Yak Cheese Reaching New Buyers", author:"Dairy Cooperative", location:"Bumthang", date:"2026-02-07",
+        img:"https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=600&q=80",
         excerpt:"We improved packaging and showcased GI verification. Customers trusted the badge.",
         body:"We improved packaging and showcased GI verification. Customers trusted the badge and repeat orders grew steadily. Our cooperative in Bumthang has been making traditional yak cheese for generations, but reaching buyers beyond our district was always a challenge. The GI Tag certification gave our product credibility, and the online marketplace opened doors to customers across the country. We now ship to 8 dzongkhags regularly." },
-      { title:"How GAP Practices Improved Consistency", author:"Vegetable Grower", location:"Wangdue", date:"2026-02-03", icon:"🥬",
+      { title:"How GAP Practices Improved Consistency", author:"Vegetable Grower", location:"Wangdue", date:"2026-02-03",
+        img:"https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&q=80",
         excerpt:"Following GAP practices reduced rejected items. Quality became consistent.",
         body:"Following GAP practices reduced rejected items. Quality became consistent and our products ranked higher in top-selling analytics. Before adopting Good Agricultural Practices, we faced frequent rejections from buyers due to inconsistent quality. The training workshops organized through the platform helped us understand soil management, pest control, and post-harvest handling. Now our rejection rate is below 5%, and we're one of the top-rated suppliers on Druk Basket." },
-      { title:"Women Farmers Leading the Way in Mongar", author:"Women's Farming Group", location:"Mongar", date:"2026-01-25", icon:"👩‍🌾",
+      { title:"Women Farmers Leading the Way in Mongar", author:"Women's Farming Group", location:"Mongar", date:"2026-01-25",
+        img:"https://images.unsplash.com/photo-1589923188651-268a9765e432?w=600&q=80",
         excerpt:"A group of 20 women farmers transformed their community through collective farming.",
         body:"A group of 20 women farmers in Mongar transformed their community through collective farming and smart marketing on Druk Basket. Starting with just chilli and ginger, they expanded to 15 different products within a year. The platform's analytics helped them understand which products had the highest demand, allowing them to plan their planting seasons better. Today, they are one of the most successful farming cooperatives in the eastern region." },
-      { title:"Cordyceps Tea: From Mountain to Market", author:"Highland Farmer", location:"Lhuntse", date:"2026-01-18", icon:"🍵",
+      { title:"Cordyceps Tea: From Mountain to Market", author:"Highland Farmer", location:"Lhuntse", date:"2026-01-18",
+        img:"https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80",
         excerpt:"Bringing rare cordyceps tea from high altitudes to buyers across Bhutan.",
         body:"Bringing rare cordyceps tea from high altitudes to buyers across Bhutan was never easy. The logistics of transporting from our remote village in Lhuntse to markets in the capital seemed impossible. But with Druk Basket's marketplace and their partnership with delivery services, we can now list our premium cordyceps tea online and have it delivered within days. Our specialty product has become one of the highest-grossing items on the platform." },
-      { title:"Young Farmers Embracing Technology", author:"Youth Farming Initiative", location:"Thimphu", date:"2026-01-10", icon:"📱",
+      { title:"Young Farmers Embracing Technology", author:"Youth Farming Initiative", location:"Thimphu", date:"2026-01-10",
+        img:"https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600&q=80",
         excerpt:"How young farmers are using the platform's analytics to make smarter growing decisions.",
         body:"A group of young farmers under 30 in Thimphu are using the platform's analytics dashboard to make data-driven farming decisions. By studying the top-selling products chart and seasonal trends, they strategically planted high-demand crops like king chilli and organic broccoli. Their approach has inspired older farmers to also adopt technology, creating a community where traditional knowledge meets modern tools." }
     ];
@@ -174,7 +181,7 @@
 
     grid.innerHTML = stories.map((s, i) => `
       <div class="card story-card" data-i="${i}">
-        <div class="story-img">${s.icon}</div>
+        <<div class="story-img"><img src="${s.img}" alt="${s.title}" /></div>
         <div class="story-body">
           <h3>${s.title}</h3>
           <div class="story-meta"><span>${s.author}</span><span>&middot;</span><span>${s.location}</span><span>&middot;</span><span>${s.date}</span></div>
