@@ -3,88 +3,221 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/drukbasket/Website/style.css">
-  <title>Contact</title>
+  <title>Contact | Druk Basket</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    :root{--bg:#f4f6f6;--card:#fff;--text:#1f2a2e;--muted:#6b7b83;--border:rgba(0,0,0,.06);--shadow:0 12px 30px rgba(16,24,40,.08);--radius:14px;
-      --nav-bg:#fbf7ef;--nav-border:rgba(0,0,0,.08);--nav-active-bg:#dfeee2;--nav-active-text:#0b6b2e;}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
-    .nav-wrap{background:var(--nav-bg);border-bottom:1px solid var(--nav-border);position:sticky;top:0;z-index:10}
-    .nav{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;gap:16px}
-    .nav-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-    .brand{font-weight:800;margin-right:8px;color:#183028}
-    .nav a{text-decoration:none;color:#2a2a2a;padding:10px 18px;border-radius:12px;font-weight:600}
-    .nav a:hover{background:rgba(0,0,0,.04)}
-    .nav a.active{background:var(--nav-active-bg);color:var(--nav-active-text)}
-    .container{max-width:1180px;margin:26px auto;padding:0 18px 30px}
-    h1{margin:0 0 14px;font-size:36px}
-    .sub{color:var(--muted);font-weight:600;margin-bottom:18px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
-    .line{padding:10px 0;border-bottom:1px solid rgba(0,0,0,.06)}
-    .line:last-child{border-bottom:none}
-    .k{color:var(--muted);font-weight:800;font-size:12px}
-    .v{font-weight:900;margin-top:4px}
-    @media(max-width:1100px){.grid{grid-template-columns:1fr}}
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.3rem;
+    }
+    .contact-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .contact-value {
+      font-weight: 700;
+      font-size: 1.02rem;
+      margin-top: 4px;
+    }
+    .map-placeholder {
+      border: 2px dashed #d4e0d8;
+      border-radius: var(--radius);
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-weight: 700;
+      gap: 8px;
+      background: #f8faf9;
+    }
+    .map-placeholder span { font-size: 2.5rem; }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.94rem;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-day { font-weight: 700; }
+    .hours-time { color: var(--text-light); }
   </style>
 </head>
 <body>
+
+  <!-- NAV -->
   <div class="nav-wrap">
     <div class="nav">
       <div class="logo-container">
-        <img src="/drukbasket/Images/logo.png" alt="Drukbasket Logo" class="main-logo">
+        <img src="/Images/logo.png" alt="Druk Basket Logo" class="main-logo" />
       </div>
-
       <div class="nav-left">
-        <a class="active" href="/drukbasket/Website/home.html">Home</a>
-        <a href="/drukbasket/Website/team.html">Our Team</a>
-        <a href="/drukbasket/Website/news.html">News</a>
-        <a href="/drukbasket/Website/stories.html">Stories</a>
-        <a href="/drukbasket/Website/feedback.html">Feedback</a>
-        <a href="/drukbasket/Website/contact.html">Contact</a>
+        <a href="home.html">Home</a>
+        <a href="team.html">Our Team</a>
+        <a href="news.html">News</a>
+        <a href="stories.html">Stories</a>
+        <a href="feedback.html">Feedback</a>
+        <a class="active" href="contact.html">Contact</a>
       </div>
-
       <div class="nav-right">
-        <a href="/drukbasket/Website/staff.html">Staff Area</a>
+        <a href="staff.html">Staff Area</a>
       </div>
     </div>
   </div>
 
-  <div class="container">
-    <h1>Contact</h1>
-    <div class="sub">Organization contact details and office information.</div>
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="breadcrumb">
+        <a href="home.html">Home</a>
+        <span class="sep">/</span>
+        <span>Contact</span>
+      </div>
+      <h1>Contact Us</h1>
+      <p>Get in touch with our team. We're here to help farmers and buyers.</p>
+    </div>
+  </div>
 
-    <div class="grid">
-      <div class="card">
-        <div class="line">
-          <div class="k">Office</div>
-          <div class="v">GovTech / YourSite Office</div>
+  <!-- CONTENT -->
+  <div class="section">
+    <div class="grid-2">
+      <!-- Contact Info -->
+      <div>
+        <div class="card" style="margin-bottom: 24px;">
+          <h3 style="font-size: 1.2rem; margin-bottom: 4px;">Get in Touch</h3>
+          <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 8px;">Reach out to us through any of these channels.</p>
+
+          <div class="contact-item">
+            <div class="contact-icon">🏢</div>
+            <div>
+              <div class="contact-label">Office</div>
+              <div class="contact-value">Department of Agriculture Marketing & Cooperatives</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Address</div>
+              <div class="contact-value">Thimphu, Bhutan</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-label">Phone</div>
+              <div class="contact-value">+975-XXXXXXXX</div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">info@drukbasket.bt</div>
+            </div>
+          </div>
         </div>
-        <div class="line">
-          <div class="k">Phone</div>
-          <div class="v">+975-XXXXXXXX</div>
-        </div>
-        <div class="line">
-          <div class="k">Email</div>
-          <div class="v">info@yoursite.bt</div>
-        </div>
-        <div class="line">
-          <div class="k">Address</div>
-          <div class="v">Thimphu, Bhutan</div>
+
+        <!-- Office Hours -->
+        <div class="card">
+          <h3 style="font-size: 1.2rem; margin-bottom: 14px;">Office Hours</h3>
+          <div class="hours-row">
+            <span class="hours-day">Monday - Friday</span>
+            <span class="hours-time">9:00 AM - 5:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Saturday</span>
+            <span class="hours-time">9:00 AM - 1:00 PM</span>
+          </div>
+          <div class="hours-row">
+            <span class="hours-day">Sunday</span>
+            <span class="hours-time">Closed</span>
+          </div>
         </div>
       </div>
 
-      <div class="card">
-        <div style="font-weight:900;font-size:18px;margin-bottom:10px;">Map Placeholder</div>
-        <div style="color:var(--muted);font-weight:700;line-height:1.6">
-          Later, we can embed Google Maps / OpenStreetMap here, or show a farmers map layer (like your other feature).
-        </div>
-        <div style="margin-top:14px;border:1px dashed rgba(0,0,0,.2);border-radius:12px;height:240px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:800">
-          MAP AREA
+      <!-- Map -->
+      <div>
+        <div class="card">
+          <h3 style="font-size: 1.2rem; margin-bottom: 14px;">Our Location</h3>
+          <div class="map-placeholder">
+            <span>📍</span>
+            <div>Map — Thimphu, Bhutan</div>
+            <div style="font-size: 0.84rem; font-weight: 600;">Google Maps / OpenStreetMap embed coming soon</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- CTA -->
+  <div class="section section-sm">
+    <div class="cta-banner">
+      <h2>Have Questions or Feedback?</h2>
+      <p>We'd love to hear from you. Share your thoughts and help us improve.</p>
+      <a href="feedback.html" class="btn-hero primary">Give Feedback</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Druk Basket</h3>
+        <p>Bhutan's own agricultural marketplace connecting farmers directly to buyers.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="team.html">Our Team</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="stories.html">Stories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="/index.html">Marketplace</a></li>
+          <li><a href="/market-prices.html">Market Prices</a></li>
+          <li><a href="/login.html">Login</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="feedback.html">Give Feedback</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>2026 Druk Basket. All rights reserved.</span>
+      <span>Ministry of Agriculture & Livestock, Bhutan</span>
+    </div>
+  </footer>
+
 </body>
 </html>

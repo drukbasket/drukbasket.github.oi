@@ -3,113 +3,258 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/drukbasket/Website/style.css">
-  <title>Staff Area</title>
+  <title>Staff Area | Druk Basket</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    :root{--bg:#f4f6f6;--card:#fff;--text:#1f2a2e;--muted:#6b7b83;--border:rgba(0,0,0,.06);--shadow:0 12px 30px rgba(16,24,40,.08);--radius:14px;
-      --nav-bg:#fbf7ef;--nav-border:rgba(0,0,0,.08);--nav-active-bg:#dfeee2;--nav-active-text:#0b6b2e;
-      --ok:#2ecc71;--warn:#3498db;}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
-    .nav-wrap{background:var(--nav-bg);border-bottom:1px solid var(--nav-border);position:sticky;top:0;z-index:10}
-    .nav{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;gap:16px}
-    .nav-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-    .brand{font-weight:800;margin-right:8px;color:#183028}
-    .nav a{text-decoration:none;color:#2a2a2a;padding:10px 18px;border-radius:12px;font-weight:600}
-    .nav a:hover{background:rgba(0,0,0,.04)}
-    .container{max-width:1180px;margin:26px auto;padding:0 18px 30px}
-    h1{margin:0 0 14px;font-size:36px}
-    .sub{color:var(--muted);font-weight:600;margin-bottom:18px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
-    label{font-weight:900;display:block;margin:12px 0 6px}
-    input{width:100%;border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-weight:700;outline:none;background:#fff}
-    .btn{margin-top:14px;border:none;border-radius:12px;padding:12px 14px;font-weight:900;cursor:pointer;color:#fff}
-    .btn.ok{background:var(--ok)}
-    .btn.warn{background:var(--warn)}
-    .row{display:flex;gap:10px;flex-wrap:wrap}
-    .badge{display:inline-block;font-size:12px;font-weight:900;background:#f2f5f6;border:1px solid var(--border);padding:6px 10px;border-radius:999px;margin-right:8px}
-    .menu a{display:block;text-decoration:none;color:inherit;padding:12px 10px;border-bottom:1px solid rgba(0,0,0,.06);font-weight:900}
-    .menu a:last-child{border-bottom:none}
-    .menu a:hover{background:rgba(0,0,0,.03);border-radius:12px}
-    @media(max-width:1100px){.grid{grid-template-columns:1fr}}
+    .login-card {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .login-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+    }
+    .login-card p {
+      color: var(--text-light);
+      font-size: 0.92rem;
+      margin-bottom: 20px;
+    }
+    .login-badges {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .login-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      background: var(--green-light);
+      color: var(--green);
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+    .login-msg {
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: none;
+    }
+    .login-msg.success {
+      background: var(--green-light);
+      color: var(--green);
+      display: block;
+    }
+    .login-msg.error {
+      background: #fce4ec;
+      color: #c62828;
+      display: block;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 28px 20px;
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .menu-item:hover {
+      border-color: var(--green);
+      background: var(--green-light);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      color: inherit;
+    }
+    .menu-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .menu-item h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .menu-item p {
+      color: var(--text-light);
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .menu-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- NAV -->
   <div class="nav-wrap">
     <div class="nav">
       <div class="logo-container">
-        <img src="/drukbasket/Images/logo.png" alt="Drukbasket Logo" class="main-logo">
+        <img src="/Images/logo.png" alt="Druk Basket Logo" class="main-logo" />
       </div>
-
       <div class="nav-left">
-        <a class="active" href="/drukbasket/Website/home.html">Home</a>
-        <a href="/drukbasket/Website/team.html">Our Team</a>
-        <a href="/drukbasket/Website/news.html">News</a>
-        <a href="/drukbasket/Website/stories.html">Stories</a>
-        <a href="/drukbasket/Website/feedback.html">Feedback</a>
-        <a href="/drukbasket/Website/contact.html">Contact</a>
+        <a href="home.html">Home</a>
+        <a href="team.html">Our Team</a>
+        <a href="news.html">News</a>
+        <a href="stories.html">Stories</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="contact.html">Contact</a>
       </div>
-
       <div class="nav-right">
-        <a href="/drukbasket/Website/staff.html">Staff Area</a>
+        <a href="staff.html" class="active">Staff Area</a>
       </div>
     </div>
   </div>
 
-  <div class="container">
-    <h1>Staff Area</h1>
-    <div class="sub">Login and manage products, orders, farmers, and reports. (Front-end demo)</div>
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="breadcrumb">
+        <a href="home.html">Home</a>
+        <span class="sep">/</span>
+        <span>Staff Area</span>
+      </div>
+      <h1>Staff Area</h1>
+      <p>Login to manage products, orders, farmers, and reports.</p>
+    </div>
+  </div>
 
-    <div class="grid">
-      <div class="card">
-        <div style="font-weight:900;font-size:18px;margin-bottom:8px;">Staff Login</div>
-        <div class="row">
-          <span class="badge">Demo</span>
-          <span class="badge">Local only</span>
-        </div>
+  <!-- CONTENT -->
+  <div class="section">
+    <!-- Login -->
+    <div class="card login-card">
+      <h3>Staff Login</h3>
+      <p>Sign in with your staff credentials to access the management dashboard.</p>
 
-        <form id="loginForm">
-          <label>Username</label>
-          <input id="u" required placeholder="staff" value="staff" />
-          <label>Password</label>
-          <input id="p" required type="password" placeholder="password" value="password" />
-          <button class="btn ok" type="submit">Login</button>
-        </form>
-
-        <div id="loginMsg" style="margin-top:10px;color:var(--muted);font-weight:800"></div>
+      <div class="login-badges">
+        <span class="login-badge">Demo Mode</span>
+        <span class="login-badge">Local Only</span>
       </div>
 
-      <div class="card">
-        <div style="font-weight:900;font-size:18px;margin-bottom:8px;">Staff Menu</div>
-        <div class="menu">
-          <a href="#" onclick="alert('Next: build Products CRUD page')">Products Management</a>
-          <a href="#" onclick="alert('Next: build Orders page')">Orders & Transactions</a>
-          <a href="#" onclick="alert('Next: build Farmers page + certificates/map')">Farmers & Certificates</a>
-          <a href="#" onclick="alert('Next: build Reports export')">Reports & Export</a>
-        </div>
-        <button class="btn warn" style="margin-top:14px" onclick="alert('Later we connect NDI/OTP login here')">
-          Configure Authentication
-        </button>
+      <form id="loginForm">
+        <label>Username</label>
+        <input id="u" required placeholder="Enter username" value="staff" />
+
+        <label>Password</label>
+        <input id="p" required type="password" placeholder="Enter password" value="password" />
+
+        <button class="btn btn-primary" type="submit" style="margin-top: 20px; width: 100%;">Sign In</button>
+      </form>
+
+      <div class="login-msg" id="loginMsg"></div>
+    </div>
+
+    <!-- Staff Menu (shown after login) -->
+    <div id="staffMenu" style="display: none; max-width: 700px; margin: 40px auto 0;">
+      <div class="section-header">
+        <h2>Staff Dashboard</h2>
+        <p>Select a module to manage.</p>
+      </div>
+
+      <div class="menu-grid">
+        <a class="menu-item" href="#" onclick="alert('Products CRUD page coming soon'); return false;">
+          <div class="menu-icon">📦</div>
+          <h4>Products</h4>
+          <p>Add, edit, and manage product listings</p>
+        </a>
+
+        <a class="menu-item" href="#" onclick="alert('Orders page coming soon'); return false;">
+          <div class="menu-icon">🛒</div>
+          <h4>Orders</h4>
+          <p>View and process customer orders</p>
+        </a>
+
+        <a class="menu-item" href="#" onclick="alert('Farmers page coming soon'); return false;">
+          <div class="menu-icon">🧑‍🌾</div>
+          <h4>Farmers</h4>
+          <p>Manage farmer profiles and certificates</p>
+        </a>
+
+        <a class="menu-item" href="#" onclick="alert('Reports page coming soon'); return false;">
+          <div class="menu-icon">📊</div>
+          <h4>Reports</h4>
+          <p>Generate and export analytics reports</p>
+        </a>
       </div>
     </div>
   </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Druk Basket</h3>
+        <p>Bhutan's own agricultural marketplace connecting farmers directly to buyers.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="team.html">Our Team</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="stories.html">Stories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="/index.html">Marketplace</a></li>
+          <li><a href="/market-prices.html">Market Prices</a></li>
+          <li><a href="/login.html">Login</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="feedback.html">Give Feedback</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>2026 Druk Basket. All rights reserved.</span>
+      <span>Ministry of Agriculture & Livestock, Bhutan</span>
+    </div>
+  </footer>
 
   <script>
     const form = document.getElementById("loginForm");
     const msg = document.getElementById("loginMsg");
+    const staffMenu = document.getElementById("staffMenu");
 
-    form.addEventListener("submit",(e)=>{
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
       const u = document.getElementById("u").value.trim();
       const p = document.getElementById("p").value.trim();
 
-      if(u === "staff" && p === "password"){
-        msg.textContent = "Login successful (demo). Next: redirect to staff dashboard / CRUD pages.";
+      if (u === "staff" && p === "password") {
+        msg.className = "login-msg success";
+        msg.textContent = "Login successful! Welcome back.";
+        staffMenu.style.display = "block";
+        staffMenu.scrollIntoView({ behavior: "smooth", block: "start" });
       } else {
-        msg.textContent = "Invalid credentials (demo). Try staff / password.";
+        msg.className = "login-msg error";
+        msg.textContent = "Invalid credentials. Try staff / password for demo.";
+        staffMenu.style.display = "none";
       }
     });
   </script>
+
 </body>
 </html>
