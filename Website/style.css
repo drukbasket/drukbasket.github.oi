@@ -551,13 +551,10 @@ textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
 .team-card:hover { transform: translateY(-4px); }
 
 .team-avatar {
-  width: 64px; height: 64px;
+  width: 80px; height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--green-light), #c2e0cc);
-  display: flex; align-items: center; justify-content: center;
+  object-fit: cover;
   margin: 0 auto 12px;
-  font-size: 1.1rem; font-weight: 800;
-  color: var(--green);
   transition: all 0.3s var(--ease-out);
   border: 2px solid transparent;
 }
