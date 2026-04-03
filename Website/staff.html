@@ -39,6 +39,25 @@
     .menu-item h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
     .menu-item p { color: var(--text-light); font-size: 0.8rem; line-height: 1.5; }
     @media (max-width: 768px) { .menu-grid { grid-template-columns: 1fr; } }
+    .staff-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      max-width: 900px; margin: 0 auto;
+    }
+    .staff-card {
+      background: #fff; border-radius: var(--radius); border: 1.5px solid var(--border);
+      overflow: hidden; text-align: center; transition: all 0.25s var(--ease);
+    }
+    .staff-card:hover {
+      transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--green);
+    }
+    .staff-card img {
+      width: 100%; aspect-ratio: 1; object-fit: cover;
+    }
+    .staff-card h4 {
+      font-size: 0.95rem; font-weight: 700; padding: 14px 12px 16px; margin: 0;
+    }
+    @media (max-width: 768px) { .staff-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+    @media (max-width: 480px) { .staff-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -70,6 +89,49 @@
   </div>
 
   <div class="section">
+      <div class="section-header" style="margin-bottom: 24px;">
+        <h2>Our Staff</h2>
+        <p>Meet the dedicated team behind Druk Basket.</p>
+      </div>
+      <div class="staff-grid">
+        <div class="staff-card reveal">
+          <img src="/Images/Pema Namgay.png" alt="Pema Namgay" />
+          <h4>Pema Namgay</h4>
+        </div>
+        <div class="staff-card reveal">
+          <img src="/Images/Sonam Kalden Choden.png" alt="Sonam Kalden Choden" />
+          <h4>Sonam Kalden Choden</h4>
+        </div>
+        <div class="staff-card reveal">
+          <img src="/Images/Sonam Wangchuk.png" alt="Sonam Wangchuk" />
+          <h4>Sonam Wangchuk</h4>
+        </div>
+        <div class="staff-card reveal">
+          <img src="/Images/Tenzin Wangmo.png" alt="Tenzin Wangmo" />
+          <h4>Tenzin Wangmo</h4>
+        </div>
+        <div class="staff-card reveal">
+          <img src="/Images/Tshering Nidup.png" alt="Tshering Nidup" />
+          <h4>Tshering Nidup</h4>
+        </div>
+        <div class="staff-card reveal">
+          <img src="/Images/Tshering Yenten.png" alt="Tshering Yenten" />
+          <h4>Tshering Yenten</h4>
+        </div>
+        <div class="staff-card reveal">
+          <img src="/Images/Ugyen Wangdi.png" alt="Ugyen Wangdi" />
+          <h4>Ugyen Wangdi</h4>
+        </div>
+        <div class="staff-card reveal">
+          <img src="/Images/Hemlal Pulami.png" alt="Hemlal Pulami" />
+          <h4>Hemlal Pulami</h4>
+        </div>
+        <div class="staff-card reveal">
+          <img src="/Images/Yangden.png" alt="Yangden" />
+          <h4>Yangden</h4>
+        </div>
+      </div>
+    </div>
     <div class="card login-card reveal">
       <h3>Staff Login</h3>
       <div class="sub">Sign in with your staff credentials to access the management dashboard.</div>
