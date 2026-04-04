@@ -107,18 +107,23 @@
     </div>
   </div>
   
-  <div class="section">
-    <div class="section-header reveal" style="max-width: 800px; margin: 0 auto 24px;">
-      <div class="section-label">Watch</div>
-      <h2>Our Journey in Action</h2>
-      <p>See how Druk Basket is transforming Bhutan's agricultural landscape — connecting farmers, empowering communities, and bringing fresh produce from farm to table.</p>
+  <div style="position: sticky; top: 0; z-index: 1;">
+    <div class="section" style="padding-bottom: 0;">
+      <div class="section-header reveal" style="max-width: 800px; margin: 0 auto 24px;">
+        <div class="section-label">Watch</div>
+        <h2>Our Journey in Action</h2>
+        <p>See how Druk Basket is transforming Bhutan's agricultural landscape — connecting farmers, empowering communities, and bringing fresh produce from farm to table.</p>
+      </div>
+      <div class="reveal" style="max-width: 800px; margin: 0 auto; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
+        <video id="storyVideo" controls controlsList="nodownload" preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background: #000; border-radius: 12px;">
+          <source src="/drukbasket/Images/Druk-Basket-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
     </div>
-    <div class="reveal" style="max-width: 800px; margin: 0 auto 40px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);">
-      <video id="storyVideo" controls controlsList="nodownload" preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background: #000; border-radius: 12px;">
-        <source src="/drukbasket/Images/Druk-Basket-video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
+  </div>
+
+  <div class="section" style="position: relative; z-index: 2; background: var(--bg);">
     <div id="storyGrid" class="grid-3 reveal"></div>
   </div>
 
