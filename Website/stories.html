@@ -236,16 +236,14 @@
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
     revealEls.forEach(el => observer.observe(el));
     
-    // Pause video when scrolled out of view
+       // Pause video when user scrolls
     const storyVideo = document.getElementById('storyVideo');
-    const videoObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (!e.isIntersecting && !storyVideo.paused) {
-          storyVideo.pause();
-        }
-      });
-    }, { threshold: 0.3 });
-    videoObserver.observe(storyVideo);
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      if (!storyVideo.paused) {
+        storyVideo.pause();
+      }
+    });
   </script>
 </body>
 </html>
