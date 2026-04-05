@@ -108,6 +108,29 @@
                     storage: "Stored at 15–25°C on wooden pallets[cite: 82, 85]."
                 }
             },
+            "GI-BT-ORANGE-001": {
+                name: "Bhutanese Mandarin Orange",
+                isVerified: true,
+                origin: "Tsirang, Bhutan",
+                lat: 27.02, lng: 90.12,
+                giId: "GI-BT-ORANGE-001",
+                process: {
+                    sourcing: "Hand-picked Bhutanese mandarin oranges from organic orchards at 600–1700m altitude.",
+                    nursery: "Seedlings grafted from certified GI mother trees; 12–18 month nursery before transplanting.",
+                    harvest: "November–January harvest at peak ripeness; only fruits 55–75mm diameter selected.",
+                    storage: "Stored at 5–8°C in ventilated crates; shelf life 2–4 weeks without chemical treatment."
+                }
+            },
+            "IMPORT-ORANGE-FAKE-099": {
+                name: "Imported Orange (Non-GI)",
+                isVerified: false,
+                origin: "Unknown / Non-GI Source",
+                lat: 27.00, lng: 90.00,
+                giId: "IMPORT-ORANGE-FAKE-099",
+                process: {
+                    reason: "Fails altitude origin criteria and lacks GI nursery traceability. Chemical wax coating detected."
+                }
+            },
             "IMPORT-ARECA-FAKE-099": {
                 name: "Imported Areca Nut",
                 isVerified: false,
@@ -223,13 +246,27 @@
                 scanner.classList.remove('scanning');
 
                 if (qrData) {
-                    const product = giDatabase[qrData];
+                    // Clean the decoded data: trim whitespace and remove invisible characters
+                    qrData = qrData.trim().replace(/[^\x20-\x7E]/g, '');
+
+                    // Try exact match first, then case-insensitive match
+                    let product = giDatabase[qrData];
+                    if (!product) {
+                        const matchKey = Object.keys(giDatabase).find(k => k.toUpperCase() === qrData.toUpperCase());
+                        if (matchKey) {
+                            qrData = matchKey;
+                            product = giDatabase[matchKey];
+                        }
+                    }
+
                     if (product) {
                         status.innerHTML = '<span class="status-success">QR decoded: ' + qrData + '</span>';
                         speak('QR code decoded successfully. ' + qrData);
                         showResult(product);
                     } else {
-                        status.innerHTML = '<span class="status-error">QR code "' + qrData + '" not found in GI registry.</span>';
+                        // Show raw bytes for debugging
+                        const rawBytes = Array.from(qrData).map(c => c.charCodeAt(0));
+                        status.innerHTML = '<span class="status-error">QR code "' + qrData + '" not found in GI registry.<br><small>Raw chars: [' + rawBytes.join(', ') + ']</small></span>';
                         speak('QR code not found in the GI registry.');
                         document.getElementById('result-card').classList.add('hidden');
                     }
@@ -254,7 +291,7 @@
             const ctx = canvas.getContext('2d', { willReadFrequently: true });
             ctx.drawImage(video, 0, 0);
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const code = jsQR(imageData.data, canvas.width, canvas.height, { inversionAttempts: 'dontInvert' });
+            const code = jsQR(imageData.data, canvas.width, canvas.height, { inversionAttempts: 'attemptBoth' });
             return code ? code.data : null;
         }
 
@@ -268,7 +305,7 @@
             const ctx = canvas.getContext('2d', { willReadFrequently: true });
             ctx.drawImage(img, 0, 0);
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const code = jsQR(imageData.data, canvas.width, canvas.height, { inversionAttempts: 'dontInvert' });
+            const code = jsQR(imageData.data, canvas.width, canvas.height, { inversionAttempts: 'attemptBoth' });
             return code ? code.data : null;
         }
 
